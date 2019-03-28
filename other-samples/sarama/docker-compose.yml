@@ -16,15 +16,15 @@ services:
     image: wurstmeister/kafka
     ports:
       - 9092:9092
-      - 7203:7203
+      # - 7203:7203
     environment:
       # KAFKA_ZOOKEEPER_CONNECT: "$(hostname | awk '{print $1}'):2181" # WARNING: not working on MacOsX + not working also the version $(hostname | awk '{print $1}')
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181/local"
       # HOSTNAME_COMMAND: "route -n | awk '/UG[ \t]/{print $$2}'"
       KAFKA_ADVERTISED_HOST_NAME: "kafka"
-      KAFKA_CREATE_TOPICS_SEPARATOR: "$$'\n'"
-      KAFKA_CREATE_TOPICS: "types-events:1:1:compact"
       KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_CREATE_TOPICS_SEPARATOR: "$$'\n'"
+      KAFKA_CREATE_TOPICS: "typed-events:1:1:compact"
     # volumes:
       # used for KAFKA_ADVERTISED_PORT
       # - /var/run/docker.sock:/var/run/docker.sock
