@@ -1,0 +1,45 @@
+
+version: "3"
+
+services:
+
+  zookeeper:
+    image: zookeeper
+    ports:
+      - 2181:2181 # client
+      - 2888:2888 # followers
+      - 3888:3888 # election
+    networks:
+      - sarama-network
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - 9092:9092
+      - 7203:7203
+    environment:
+      # KAFKA_ZOOKEEPER_CONNECT: "$(hostname | awk '{print $1}'):2181" # WARNING: not working on MacOsX + not working also the version $(hostname | awk '{print $1}')
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      # HOSTNAME_COMMAND: "route -n | awk '/UG[ \t]/{print $$2}'"
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_CREATE_TOPICS_SEPARATOR: "$$'\n'"
+      KAFKA_CREATE_TOPICS: "types-events:1:1:compact"
+      KAFKA_ADVERTISED_PORT: 9092
+    # volumes:
+      # used for KAFKA_ADVERTISED_PORT
+      # - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - sarama-network
+    depends_on:
+      - zookeeper
+    
+  sarama:
+    image: sarama-kafka-consumer-sample:1.0
+    networks:
+      - sarama-network
+    depends_on:
+      - kafka
+
+networks:
+  sarama-network:
+    driver: overlay

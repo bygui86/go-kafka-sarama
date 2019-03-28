@@ -12,10 +12,10 @@
 
 1. Prepare environment
 	```
-	mkdir -p $GOPATH/src/github.com
-	cd $GOPATH/src/github.com
+	mkdir -p $GOPATH/src/github.com/byui86
+	cd $GOPATH/src/github.com/byui86
 	git clone git@github.com:bygui86/go-kafka.git
-	cd bygui86/go-kafka
+	cd go-kafka
 	go get ./...
 	```
 
