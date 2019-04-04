@@ -30,25 +30,7 @@ Thumbs.db
 
 ###################### IDE configurations #######
 
-########### IntelliJ Idea
-.idea/
-.intellij/
-*.eml
-*.iws
-*.iml
-*.ipr
-out/
-
-########### Eclipse
-.externalToolBuilders/
-.metadata*/
-.recommenders/
-eclipsebin/
-RemoteSystemsTempFiles/
-.classpath
-.project
-.factorypath
-.settings/
+########### GoLand
 
 ########### Visual Studio Code
 .vscode
@@ -56,16 +38,21 @@ RemoteSystemsTempFiles/
 
 
 
-###################### Build automation tools ###
+###################### GoLang ###################
 
-.gradle/
-.m2/
+########### Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
+########### Test binaries
+*.test
 
+########### Go coverage tool output (LiteIDE)
+*.out
 
-###################### Compiler #################
-
-bin/
-build/
-target/
-*.class
+########### Project specific
+vendor/*
+!vendor/.gitkeep
