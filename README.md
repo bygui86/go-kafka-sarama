@@ -1,13 +1,6 @@
 
 # Go Kafka
 
-## Prerequisites
-
-* Docker `REQUIRED`
-* Go `OPTIONAL`
-
----
-
 ## Instructions
 
 1. Prepare environment
