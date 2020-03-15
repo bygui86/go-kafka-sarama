@@ -30,11 +30,12 @@ Thumbs.db
 
 ###################### IDE configurations #######
 
-########### GoLand
-
 ########### Visual Studio Code
 .vscode
 *.code-workspace
+
+########### JetBrains
+.idea
 
 
 
@@ -50,9 +51,8 @@ Thumbs.db
 ########### Test binaries
 *.test
 
-########### Go coverage tool output (LiteIDE)
+########### Go coverage tool output
 *.out
 
 ########### Project specific
-vendor/*
-!vendor/.gitkeep
+go-kafka
