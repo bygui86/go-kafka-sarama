@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-consumer
+spec:
+  selector:
+    app: kafka-consumer
+  ports:
+    - name: metrics
+      port: 9090
+      targetPort: metrics
+    # - name: probes
+    #   port: 9091
+    #   targetPort: probes

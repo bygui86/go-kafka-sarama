@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      terminationGracePeriodSeconds: 15
+      containers:
+        - name: kafka-producer
+          image: bygui86/kafka-producer:v1.0.0
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: kafka-producer
+          ports:
+            - name: metrics
+              containerPort: 9090
+            # - name: probes
+            #   containerPort: 9091
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          # livenessProbe:
+          #   httpGet:
+          #     path: /live
+          #     port: probes
+          #   initialDelaySeconds: 30
+          #   periodSeconds: 5
+          #   timeoutSeconds: 3
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /ready
+          #     port: probes
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 5
+          #   timeoutSeconds: 3
+          #   successThreshold: 1
+          #   failureThreshold: 3

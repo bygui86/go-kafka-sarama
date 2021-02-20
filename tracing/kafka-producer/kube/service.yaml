@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-producer
+spec:
+  selector:
+    app: kafka-producer
+  ports:
+    - name: metrics
+      port: 9090
+      targetPort: metrics
+    # - name: probes
+    #   port: 9091
+    #   targetPort: probes
